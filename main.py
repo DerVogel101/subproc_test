@@ -33,6 +33,7 @@ print(prozesse)
 for proz_num in range(proz_anzahl):
     exec(f'p{proz_num} = subprocess.Popen(["python", "calculate.py", str(prozesse[proz_num]), str(proz_num), "2"], stdout=subprocess.PIPE)')
 
+
 p1 = subprocess.Popen(['python', 'calculate.py', str(limit), '1', '2'], stdout=subprocess.PIPE)
 p2 = subprocess.Popen(['python', 'calculate.py', str(limit), '2', '2'], stdout=subprocess.PIPE)
 result1 = json.loads(p1.communicate()[0])
