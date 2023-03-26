@@ -1,10 +1,12 @@
 # calculate.py
 import sys
 import json
-def calculate(limit_start, limit_end):
+
+
+def teiler_finden(limit_start, limit_ende):
     teiler_liste = []
     schritt = 0
-    for zahl_auswahl in range(limit_start, limit_end + 1):
+    for zahl_auswahl in range(limit_start, limit_ende + 1):
         teiler_liste.append([])
         for teiler_test in range(1, int(zahl_auswahl ** 0.5) + 1):
 
@@ -22,5 +24,5 @@ if __name__ == '__main__':
     limit_bereich = limit_bereich[1:-1].split(', ')
     limit_start = int(limit_bereich[0])
     limit_end = int(limit_bereich[1])
-    calculate(limit_start, limit_end)
+    teiler_finden(limit_start, limit_end)
 
