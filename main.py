@@ -2,6 +2,7 @@
 import subprocess
 import json
 import os
+import time
 
 # Anzahl der Prozessorkerne einlesen
 kern_anzahl = os.cpu_count()
@@ -41,15 +42,22 @@ for i in range(1, proz_anzahl):
     prozesse.append([(i * limit // proz_anzahl) + 1, (i + 1) * limit // proz_anzahl])
 print(prozesse)
 
+start_teiler = time.time()
+# starte die Prozesse
 for proz_num in range(proz_anzahl):
-    exec(f'p{proz_num} = subprocess.Popen(["python", "calculate.py", str(prozesse[proz_num]), str(limit)], stdout=subprocess.PIPE)')
+    exec(f'p{proz_num} = subprocess.Popen(["python", "calculate.py", str(prozesse[proz_num])], stdout=subprocess.PIPE)')
 
 for proz_num in range(proz_anzahl):
     exec(f'teiler_erg_{proz_num} = json.loads(p{proz_num}.communicate()[0])')
     exec(f'teiler_liste += teiler_erg_{proz_num}')
-print("teiler berechnen fertig")
+
+end_teiler = time.time()
+dauer_teiler = round(end_teiler - start_teiler, 2)
+minuten, sekunden = divmod(dauer_teiler, 60)
+stunden, minuten = divmod(minuten, 60)
+print(f"Teiler berechnen fertig, es hat {stunden} Stunden, {minuten} Minuten und {sekunden} Sekunden gedauert.")
 
 
-print(teiler_liste)
+#print(teiler_liste)
 print("fertig")
 
