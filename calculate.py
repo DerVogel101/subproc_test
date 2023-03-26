@@ -1,8 +1,7 @@
 # calculate.py
 import sys
 import json
-
-def calculate(limit_start, limit_end, limit):
+def calculate(limit_start, limit_end):
     teiler_liste = []
     schritt = 0
     for zahl_auswahl in range(limit_start, limit_end + 1):
@@ -19,9 +18,9 @@ def calculate(limit_start, limit_end, limit):
 
 if __name__ == '__main__':
     limit_bereich = str(sys.argv[1])
-    limit = int(sys.argv[2])
     # wandle den string in eine liste um
     limit_bereich = limit_bereich[1:-1].split(', ')
     limit_start = int(limit_bereich[0])
     limit_end = int(limit_bereich[1])
-    calculate(limit_start, limit_end, limit)
+    calculate(limit_start, limit_end)
+
