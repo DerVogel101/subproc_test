@@ -11,5 +11,9 @@ def teiler_sum(teiler_liste_abschnitt):
 
 
 if __name__ == '__main__':
-    teiler_liste_abschnitt = json.loads(sys.argv[1])
+    proz_num = int(json.loads(sys.argv[1]))
+    pfad = sys.argv[2]
+    datei_endung = sys.argv[3]
+    with open(f"{pfad}/p_sum_{proz_num}{datei_endung}", "r") as f:
+        teiler_liste_abschnitt = json.loads(f.read())
     teiler_sum(teiler_liste_abschnitt)
