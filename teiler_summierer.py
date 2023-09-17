@@ -4,9 +4,7 @@ import json
 
 
 def teiler_sum(teiler_liste_abschnitt):
-    teiler_liste_summe = []  # Erstelle eine leere Liste, zum Speichern der Summen der Teiler
-    for i in teiler_liste_abschnitt:  # Iteriere über den Abschnitt mit Teilern der Teilerliste
-        teiler_liste_summe.append(sum(i))  # Füge die Summe der Teiler der Liste der Summen der Teiler hinzu
+    teiler_liste_summe = list(map(sum, teiler_liste_abschnitt))  # Berechne die Summe der Teiler für jeden Abschnitt
     print(json.dumps(teiler_liste_summe))  # Gebe die Liste aus, an den Hauptprozess
 
 

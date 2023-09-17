@@ -3,21 +3,13 @@
 import json
 import sys
 
-
 def teiler_finden(limit_start, limit_ende):
-    teiler_liste = []  # Erstellt eine leere Liste, um die Teiler zu speichern
-    schritt = 0  # Erstellt eine Variable, um die Schritte zu zählen
-    for zahl_auswahl in range(limit_start, limit_ende + 1):  # Wählt einen Zahlenbereich aus, über den iteriert wird
-        teiler_liste.append([])  # Fügt eine leere Liste in die Liste der Teiler ein
-        for teiler_test in range(1, int(zahl_auswahl ** 0.5) + 1):  # Testet alle Zahlen von 1 bis zur Wurzel der Zahl
-            if zahl_auswahl % teiler_test == 0:  # Wenn die Zahl durch den Teiler teilbar ist
-                teiler_liste[schritt].append(teiler_test)  # Füge den Teiler zur Liste der Teiler hinzu
-                # Wenn der Teiler nicht gleich der Zahl ist und die Zahl durch den Teiler teilbar ist
-                if teiler_test != zahl_auswahl // teiler_test and zahl_auswahl != zahl_auswahl // teiler_test:
-                    # Füge den Teiler zur Liste der Teiler hinzu
-                    teiler_liste[schritt].append(zahl_auswahl // teiler_test)
-        schritt += 1  # Erhöhe die Schrittvariable um 1
-    print(json.dumps(teiler_liste))  # Gebe die Liste der Teiler aus, an den Hauptprozess
+    teiler_liste = []
+    for zahl_auswahl in range(limit_start, limit_ende + 1):
+        teiler = [teiler_test for teiler_test in range(1, int(zahl_auswahl ** 0.5) + 1) if zahl_auswahl % teiler_test == 0]
+        teiler += [zahl_auswahl // x for x in teiler if x != zahl_auswahl // x and zahl_auswahl != zahl_auswahl // x]
+        teiler_liste.append(teiler)
+    print(json.dumps(teiler_liste))
 
 
 if __name__ == '__main__':
